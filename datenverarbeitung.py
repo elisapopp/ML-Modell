@@ -17,7 +17,7 @@ y = np.array(data["language"])
 cv = CountVectorizer()
 X = cv.fit_transform(x)
 X_train, X_test, y_train, y_test = train_test_split(X, y, 
-                                                    test_size=0.33, 
+                                                    test_size=0.2, 
                                                     random_state=42)
 
 model = MultinomialNB()

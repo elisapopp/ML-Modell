@@ -6,9 +6,9 @@ from sklearn.naive_bayes import MultinomialNB
 
 
 data = pd.read_csv("https://raw.githubusercontent.com/amankharwal/Website-data/master/dataset.csv")
-print(data.head())
 
-data["language"].value_counts()
+print(data.isnull().sum())
+print(data["language"].value_counts())
 
 
 x = np.array(data["Text"])
@@ -20,9 +20,11 @@ X_train, X_test, y_train, y_test = train_test_split(X, y,
                                                     test_size=0.2, 
                                                     random_state=42)
 
+
+
 model = MultinomialNB()
 model.fit(X_train,y_train)
-model.score(X_test,y_test)
+print(model.score(X_test,y_test))
 
 user = input("Enter a Text: ")
 data = cv.transform([user]).toarray()

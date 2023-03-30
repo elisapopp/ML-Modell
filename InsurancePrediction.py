@@ -55,5 +55,5 @@ predictions2 = model2.predict(xtest)
 
 #userInputAge = input("Enter your Age: ")
 
-print('Decision Tree Score: ' + model.score(xtest, ytest))
-print('Random Forest Score: ' + model2.score(xtest, ytest))
+print('Decision Tree Score: ' + str(model.score(xtest, ytest)))
+print('Random Forest Score: ' + str(model2.score(xtest, ytest)))

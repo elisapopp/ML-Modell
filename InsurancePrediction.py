@@ -53,7 +53,7 @@ model2.fit(xtrain, ytrain)
 predictions = model.predict(xtest)
 predictions2 = model2.predict(xtest)
 
-userInputAge = input("Enter your Age: ")
+#userInputAge = input("Enter your Age: ")
 
-print(model.score(xtest, ytest))
-print(model2.score(xtest, ytest))
+print('Decision Tree Score: ' + model.score(xtest, ytest))
+print('Random Forest Score: ' + model2.score(xtest, ytest))

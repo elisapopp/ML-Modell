@@ -49,11 +49,12 @@ xtrain, xtest, ytrain, ytest = train_test_split(x, y, test_size=0.10, random_sta
 model = DecisionTreeClassifier()
 model2 = RandomForestClassifier()
 model.fit(xtrain, ytrain)
-model2.fit(xtrain, ytrain)
 predictions = model.predict(xtest)
-predictions2 = model2.predict(xtest)
 
 #userInputAge = input("Enter your Age: ")
 
 print('Decision Tree Score: ' + str(model.score(xtest, ytest)))
+
+model2.fit(xtrain, ytrain.ravel())
+predictions2 = model2.predict(xtest)
 print('Random Forest Score: ' + str(model2.score(xtest, ytest)))

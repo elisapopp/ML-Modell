@@ -3,6 +3,7 @@ import plotly.express as px
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier
 
 
 data = pd.read_csv("https://raw.githubusercontent.com/amankharwal/Website-data/master/TravelInsurancePrediction.csv")
@@ -14,25 +15,24 @@ data.info()
 
 data["TravelInsurance"] = data["TravelInsurance"].map({0: "Not Purchased", 1: "Purchased"})
 
-
 data = data
 
 #Age
 figure = px.histogram(data, x = "Age", 
                       color = "TravelInsurance", 
-                      title= "Factors Affecting Purchase of Travel Insurance: Age")
+                      title= "Altersabhängigkeit bei dem Kauf einer Reiseversicherung")
 figure.show()
 
 #Employment Type
 figure = px.histogram(data, x = "Employment Type", 
                       color = "TravelInsurance", 
-                      title= "Factors Affecting Purchase of Travel Insurance: Employment Type")
+                      title= "Beschäftigungsverhältnis bei dem Kauf einer Reiseversicherung")
 figure.show()
 
 #Annual Income
 figure = px.histogram(data, x = "AnnualIncome", 
                       color = "TravelInsurance", 
-                      title= "Factors Affecting Purchase of Travel Insurance: Annual Income")
+                      title= "Einkommen in Abhängigkeit zum Kauf einer Reiseversicherung")
 figure.show()
 
 
@@ -47,7 +47,13 @@ y = np.array(data[["TravelInsurance"]])
 
 xtrain, xtest, ytrain, ytest = train_test_split(x, y, test_size=0.10, random_state=42)
 model = DecisionTreeClassifier()
+model2 = RandomForestClassifier()
 model.fit(xtrain, ytrain)
+model2.fit(xtrain, ytrain)
 predictions = model.predict(xtest)
+predictions2 = model2.predict(xtest)
 
-print(predictions)
+userInputAge = input("Enter your Age: ")
+
+print(model.score(xtest, ytest))
+print(model2.score(xtest, ytest))

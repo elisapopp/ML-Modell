@@ -33,21 +33,41 @@
 - Für den Vergleich werden dieselben Daten verwendet, damit Unterschiede aufgrund verschiedener Input-Daten vermieden wird: https://raw.githubusercontent.com/amankharwal/Website-data/master/TravelInsurancePrediction.csv
 
 ---
+---
 
-## Datenanalyse / Datenbereinigung
+## Schritt 1: Datenanalyse / Datenbereinigung
+
+### Anwendungsfall 1: Spracherkennung
+
+- TODO
+
+### Anwendungsfall 2: Vorhersagen von Reiseversicherungen
 
 - TODO
 
 ---
 
-## Training der Algorithmen anhand der Daten
+## Schritt 2: Training der Algorithmen anhand der Daten
+
+### Anwendungsfall 1: Spracherkennung
+
+- TODO
+
+### Anwendungsfall 2: Vorhersagen von Reiseversicherungen
 
 - TODO
 
 ---
 
-## Vorhersagen
+## Schritt 3: Vorhersagen
 
+
+### Anwendungsfall 1: Spracherkennung
 
 - TODO
+
+### Anwendungsfall 2: Vorhersagen von Reiseversicherungen
+
+- TODO
+
 

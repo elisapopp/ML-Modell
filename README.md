@@ -43,6 +43,8 @@
 
 ### Anwendungsfall 2: Vorhersagen von Reiseversicherungen
 
+#### Visualisierung 
+
 - Um die Daten aus dem Datenset gut visualisieren zu können, wurde das Modul plotly Express (https://plotly.com/python/plotly-express/) verwendet und im Code wie folgt importiert:
 ```java
   import plotly.express as px
@@ -53,6 +55,16 @@
   - ```x```: x-Variable des Histogramms, 
   - ```color```: Unterscheidung mithilfe von Farben anhand der mitgegebenen Zielvariablen
   - ```title```: Titel des Histogramms
+
+#### Datenveränderung
+- 
+
+#### Datenüberprüfung
+- Welche Datenattribute existieren in dem Datenset? Anzeigen der ersten 7 Einträge mithilfe: ```data.head(7)``` (https://www.w3schools.com/python/pandas/ref_df_head.asp)
+- Welche Datentypen/allgemeine Informationen? Automatischer Print mithilfe: ```data.info()```
+(https://www.w3schools.com/python/pandas/ref_df_info.asp)
+- Existieren Null-Werte? ```print(data.isnull().sum())```
+(https://www.w3schools.com/python/pandas/ref_df_isnull.asp)
 
 ---
 

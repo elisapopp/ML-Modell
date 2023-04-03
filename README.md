@@ -64,6 +64,8 @@
 (https://www.w3schools.com/python/pandas/ref_df_info.asp)
 - Existieren Null-Werte? ```print(data.isnull().sum())```
 (https://www.w3schools.com/python/pandas/ref_df_isnull.asp)
+- Sind alle Altersgruppe vertreten? Auslesen der höchsten und geringsten Altersangaben ```data["Age"].min()``` & ```data["Age"].max()```
+- https://www.w3schools.com/python/pandas/ref_df_max.asp & https://www.w3schools.com/python/pandas/ref_df_min.asp
 
 #### Datenveränderung
 - Unrelevante Daten werden gelöscht. In dem Fall spiel der Parameter Unnamed keine Rolle und wird mithilfe von ```data.drop(columns=["Unnamed: 0"], inplace=True)``` aus dem Datenset gelöscht. 

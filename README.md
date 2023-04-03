@@ -43,7 +43,16 @@
 
 ### Anwendungsfall 2: Vorhersagen von Reiseversicherungen
 
-- TODO
+- Um die Daten aus dem Datenset gut visualisieren zu können, wurde das Modul plotly Express (https://plotly.com/python/plotly-express/) verwendet und im Code wie folgt importiert:
+```java
+  import plotly.express as px
+```
+- Mithilfe der Methode ```px.histogram(parameters)``` kann ein visuelles Histogramm erzeugt werden.
+- Als Parameter dienen:
+  - ```data```: die Daten (aus dem zuvor genannten Datenset), 
+  - ```x```: x-Variable des Histogramms, 
+  - ```color```: Unterscheidung mithilfe von Farben anhand der mitgegebenen Zielvariablen
+  - ```title```: Titel des Histogramms
 
 ---
 

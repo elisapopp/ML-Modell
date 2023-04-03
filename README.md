@@ -16,6 +16,7 @@
 ```java
   from sklearn.naive_bayes import MultinomialNB
 ```
+- Die Daten sind unter folgender URL verfügbar: https://raw.githubusercontent.com/amankharwal/Website-data/master/dataset.csv
 
 ### Anwendungsfall 2: Vorhersagen von Reiseversicherungen
 
@@ -29,6 +30,7 @@
 ```java
   from sklearn.ensemble import RandomForestClassifier
 ```
+- Für den Vergleich werden dieselben Daten verwendet, damit Unterschiede aufgrund verschiedener Input-Daten vermieden wird: https://raw.githubusercontent.com/amankharwal/Website-data/master/TravelInsurancePrediction.csv
 
 ---
 

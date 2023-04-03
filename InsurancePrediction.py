@@ -17,6 +17,12 @@ data.drop(columns=["Unnamed: 0"], inplace=True)
 #Ausgabe aller summierten Nullwerte --> Ziel: Alles 0 --> Keine Nullwerte vorhanden im Datenset
 print(data.isnull().sum())
 
+#Minimales Alter in dem Datenset
+print('Maximales Alter in dem Datenset: ' + str(data["Age"].min()))
+
+#Maximales Alter in dem Datenset
+print('Maximales Alter in dem Datenset: ' + str(data["Age"].max()))
+
 #Ausgabe von Grundinformationen des Datensets
 data.info()
 

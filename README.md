@@ -26,10 +26,12 @@
 ```java
   from sklearn.tree import DecisionTreeClassifier
 ```
+- https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html
 - Andererseits wird der RandomForest als Vergleich dienen, der wie folgt importiert wird.
 ```java
   from sklearn.ensemble import RandomForestClassifier
 ```
+- https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
 - Für den Vergleich werden dieselben Daten verwendet, damit Unterschiede aufgrund verschiedener Input-Daten vermieden wird: https://raw.githubusercontent.com/amankharwal/Website-data/master/TravelInsurancePrediction.csv
 
 ---

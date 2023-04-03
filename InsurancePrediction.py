@@ -5,59 +5,98 @@ from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 
-#Todo Doku
+#Die Daten von der csv-Datei werden in die Variable data eingelesen
 data = pd.read_csv("https://raw.githubusercontent.com/amankharwal/Website-data/master/TravelInsurancePrediction.csv")
 
+#Ausgabe der ersten sieben Columns des Datensets
 print(data.head(7))
 
-#Todo Doku
+#Löschen der unrelevanten Daten
 data.drop(columns=["Unnamed: 0"], inplace=True)
+
+#Ausgabe aller summierten Nullwerte --> Ziel: Alles 0 --> Keine Nullwerte vorhanden im Datenset
 print(data.isnull().sum())
+
+#Ausgabe von Grundinformationen des Datensets
 data.info()
 
-#Todo Doku
+#Veränderung der Variable TravelInsurance --> 0 wird zu Besitzt keine Reiseversicherung, 1 wird zu Besitzt eine Reiseversicherung
 data["TravelInsurance"] = data["TravelInsurance"].map({0: "Besitzt keine Reiseversicherung", 1: "Besitzt eine Reiseversicherung"})
 
+#Veränderung der Variable GraduateOrNot --> 0 wird zu No, 1 wird zu Yes
+data["GraduateOrNot"] = data["GraduateOrNot"].map({"No": 0, "Yes": 1})
+
+#Veränderung der Variable FrequentFlyer --> 0 wird zu No, 1 wird zu Yes
+data["FrequentFlyer"] = data["FrequentFlyer"].map({"No": 0, "Yes": 1})
+
+#Veränderung der Variable EverTravelledAbroad --> 0 wird zu No, 1 wird zu Yes
+data["EverTravelledAbroad"] = data["EverTravelledAbroad"].map({"No": 0, "Yes": 1})
+
+
+#????????????Veränderte Daten werden abgespeichert (könnte sonst zu Fehlern führen)???????????
 data = data
 
-#Age
+#Visualisierung anhand der Variablen Age --> Altersverteilung
 figure = px.histogram(data, x = "Age", 
                       color = "TravelInsurance", 
                       title= "Altersabhängigkeit bei dem Kauf einer Reiseversicherung")
 figure.show()
 
-#Employment Type
+#Visualisierung anhand der Variablen Employment Type
 figure = px.histogram(data, x = "Employment Type", 
                       color = "TravelInsurance", 
                       title= "Beschäftigungsverhältnis bei dem Kauf einer Reiseversicherung")
 figure.show()
 
-#Annual Income
+#Visualisierung anhand der Variablen AnnualIncome
 figure = px.histogram(data, x = "AnnualIncome", 
                       color = "TravelInsurance", 
                       title= "Einkommen in Abhängigkeit zum Kauf einer Reiseversicherung")
 figure.show()
 
-
-data["GraduateOrNot"] = data["GraduateOrNot"].map({"No": 0, "Yes": 1})
-data["FrequentFlyer"] = data["FrequentFlyer"].map({"No": 0, "Yes": 1})
-data["EverTravelledAbroad"] = data["EverTravelledAbroad"].map({"No": 0, "Yes": 1})
+#In die Variable x werden alle Daten des Datensets bis auf die zu vorhersagende Zielvariable y (TravelInsurance) hinzugefügt. Vorhersage von y basiert auf x.
 x = np.array(data[["Age", "GraduateOrNot", 
                    "AnnualIncome", "FamilyMembers", 
                    "ChronicDiseases", "FrequentFlyer", 
                    "EverTravelledAbroad"]])
+
+#In die Variable y wird die zu vorhersagende Zielvariable TravelInsurance hinzugefügt
 y = np.array(data[["TravelInsurance"]])
 
+#Aufteilung von Training- und Testdaten
 xtrain, xtest, ytrain, ytest = train_test_split(x, y, test_size=0.10, random_state=42)
+
+#Deklaration und Initialisierung von DecisionTree Algorithmus
 model = DecisionTreeClassifier()
+
+#Deklaration und Initialisierung von RandomForest Algorithmus
 model2 = RandomForestClassifier()
+
+#######################################################################
+###########################DECISION TREE###############################
+#######################################################################
+
+#Training des DecisionTree Algorithmus mit den Trainingsdaten
 model.fit(xtrain, ytrain)
-predictions = model.predict(xtest)
 
-#userInputAge = input("Enter your Age: ")
+#Anhand der Testdaten können mithilfe des trainierten Algorithmus nun auch Vorhersagen getroffen werden
+#predictions = model.predict(xtest)
 
+#Wie viel kann der trainierte Algorithmus richtig vorhersagen?
 print('Decision Tree Score: ' + str(model.score(xtest, ytest)))
 
+#######################################################################
+###########################RANDOM FOREST###############################
+#######################################################################
+
+#Training des RandomForest Algorithmus mit den Trainingsdaten
 model2.fit(xtrain, ytrain.ravel())
-predictions2 = model2.predict(xtest)
+
+#Anhand der Testdaten können mithilfe des trainierten Algorithmus nun auch Vorhersagen getroffen werden
+#predictions2 = model2.predict(xtest)
+
+#Wie viel kann der trainierte Algorithmus richtig vorhersagen?
 print('Random Forest Score: ' + str(model2.score(xtest, ytest)))
+
+#TODO Usereingabe
+#userInputAge = input("Enter your Age: ")

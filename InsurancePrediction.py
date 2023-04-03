@@ -5,14 +5,17 @@ from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 
-
+#Todo Doku
 data = pd.read_csv("https://raw.githubusercontent.com/amankharwal/Website-data/master/TravelInsurancePrediction.csv")
-data.head()
 
+print(data.head(7))
+
+#Todo Doku
 data.drop(columns=["Unnamed: 0"], inplace=True)
-data.isnull().sum()
+print(data.isnull().sum())
 data.info()
 
+#Todo Doku
 data["TravelInsurance"] = data["TravelInsurance"].map({0: "Besitzt keine Reiseversicherung", 1: "Besitzt eine Reiseversicherung"})
 
 data = data

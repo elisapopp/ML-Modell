@@ -26,10 +26,12 @@
 ```java
   from sklearn.tree import DecisionTreeClassifier
 ```
+- https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html
 - Andererseits wird der RandomForest als Vergleich dienen, der wie folgt importiert wird.
 ```java
   from sklearn.ensemble import RandomForestClassifier
 ```
+- https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
 - Für den Vergleich werden dieselben Daten verwendet, damit Unterschiede aufgrund verschiedener Input-Daten vermieden wird: https://raw.githubusercontent.com/amankharwal/Website-data/master/TravelInsurancePrediction.csv
 
 ---
@@ -56,15 +58,20 @@
   - ```color```: Unterscheidung mithilfe von Farben anhand der mitgegebenen Zielvariablen
   - ```title```: Titel des Histogramms
 
-#### Datenveränderung
-- 
-
 #### Datenüberprüfung
 - Welche Datenattribute existieren in dem Datenset? Anzeigen der ersten 7 Einträge mithilfe: ```data.head(7)``` (https://www.w3schools.com/python/pandas/ref_df_head.asp)
 - Welche Datentypen/allgemeine Informationen? Automatischer Print mithilfe: ```data.info()```
 (https://www.w3schools.com/python/pandas/ref_df_info.asp)
 - Existieren Null-Werte? ```print(data.isnull().sum())```
 (https://www.w3schools.com/python/pandas/ref_df_isnull.asp)
+
+#### Datenveränderung
+- Unrelevante Daten werden gelöscht. In dem Fall spiel der Parameter Unnamed keine Rolle und wird mithilfe von ```data.drop(columns=["Unnamed: 0"], inplace=True)``` aus dem Datenset gelöscht. 
+- Verwendete Parameter:
+  - Columns legt fest, welche Daten verändert werden sollen,
+  - Inplace sagt dabei aus, dass keine Kopie erstellt wird und stattdessen das Datenset verändert wird
+- Zur besseren Lesbarkeit der Daten wird die Variable TravelInsurance nicht mehr mit 0 oder 1 angegeben, sondern gemappt, indem einer 0 der Text "Besitzt keine Reiseversicherung" und einer 1 der Text "Besitzt eine Reiseversicherung" zugeordnet wird. Dies erleichtert auch das Verständnis der visualisierten Daten.
+- Auch bei den Variablen GraduateOrNot, FrequentFlyer und EverTravelledAbroad wird ein Mapping durchgeführt mit jeweils 0 --> No, 1 --> Yes
 
 ---
 

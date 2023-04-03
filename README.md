@@ -33,21 +33,50 @@
 - Für den Vergleich werden dieselben Daten verwendet, damit Unterschiede aufgrund verschiedener Input-Daten vermieden wird: https://raw.githubusercontent.com/amankharwal/Website-data/master/TravelInsurancePrediction.csv
 
 ---
+---
 
-## Datenanalyse / Datenbereinigung
+## Schritt 1: Datenanalyse / Datenbereinigung
+
+### Anwendungsfall 1: Spracherkennung
+
+- TODO
+
+### Anwendungsfall 2: Vorhersagen von Reiseversicherungen
+
+- Um die Daten aus dem Datenset gut visualisieren zu können, wurde das Modul plotly Express (https://plotly.com/python/plotly-express/) verwendet und im Code wie folgt importiert:
+```java
+  import plotly.express as px
+```
+- Mithilfe der Methode ```px.histogram(parameters)``` kann ein visuelles Histogramm erzeugt werden.
+- Als Parameter dienen:
+  - ```data```: die Daten (aus dem zuvor genannten Datenset), 
+  - ```x```: x-Variable des Histogramms, 
+  - ```color```: Unterscheidung mithilfe von Farben anhand der mitgegebenen Zielvariablen
+  - ```title```: Titel des Histogramms
+
+---
+
+## Schritt 2: Training der Algorithmen anhand der Daten
+
+### Anwendungsfall 1: Spracherkennung
+
+- TODO
+
+### Anwendungsfall 2: Vorhersagen von Reiseversicherungen
 
 - TODO
 
 ---
 
-## Training der Algorithmen anhand der Daten
+## Schritt 3: Vorhersagen
+
+
+### Anwendungsfall 1: Spracherkennung
 
 - TODO
 
----
-
-## Vorhersagen
-
+### Anwendungsfall 2: Vorhersagen von Reiseversicherungen
 
 - TODO
+
 

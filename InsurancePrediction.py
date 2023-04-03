@@ -13,7 +13,7 @@ data.drop(columns=["Unnamed: 0"], inplace=True)
 data.isnull().sum()
 data.info()
 
-data["TravelInsurance"] = data["TravelInsurance"].map({0: "Not Purchased", 1: "Purchased"})
+data["TravelInsurance"] = data["TravelInsurance"].map({0: "Besitzt keine Reiseversicherung", 1: "Besitzt eine Reiseversicherung"})
 
 data = data
 

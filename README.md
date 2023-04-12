@@ -17,6 +17,7 @@
   from sklearn.naive_bayes import MultinomialNB
 ```
 - Die Daten sind unter folgender URL verfügbar: https://raw.githubusercontent.com/amankharwal/Website-data/master/dataset.csv
+- Orienierung an: https://practicaldatascience.co.uk/machine-learning/how-to-create-a-naive-bayes-text-classification-model-using-scikit-learn
 
 ### Anwendungsfall 2: Vorhersagen von Reiseversicherungen
 
@@ -41,7 +42,15 @@
 
 ### Anwendungsfall 1: Spracherkennung
 
-- TODO
+#### Datenüberprüfung
+
+- Bei der Analyse der Daten werden diese zunächst mithilfe der Methoden ```data.isnull().sum()``` nach fehlenden Werten durchsucht und die Anzahl ausgegeben.
+
+- Durch die Verwendung der Methode ```data["language"].value_counts()``` wird die Anzahl  der vorkommenden Werte in der Spalte ermittelt. Das Ergebnis zeigt, dass es sich bei diesem Datenset um ein Klassifikationsproblem mit mehreren Klassen handelt.
+
+#### Datenveränderung
+
+- Hier noch erläutern, wenn die daten modifiziert werden.
 
 ### Anwendungsfall 2: Vorhersagen von Reiseversicherungen
 
@@ -79,7 +88,25 @@
 
 ### Anwendungsfall 1: Spracherkennung
 
-- TODO
+#### Vorbereitung der Daten
+
+- da Modelle für maschinelles Lernen keinen Text verwenden, werden die Texte zunächst in Vektoren umgewandelt. Dazu wird die Vorbereitungstechnik Count Vectorization verwendet. Dies wird mithilfe des CountVectorizer-Moduls realisiert:
+
+```java
+  from sklearn.feature_extraction.text import CountVectorizer
+```
+- CountVectorizer zählt wie häufig ein Wort in einem Dokument vorkommt. Jede Koordinate repräsentiert ein Wort. Durch die Methode ```cv.fit_transform(x)``` wird das Ergebnis als Bag-of-Words-Modell dargestellt. Dabei wird jedes Dokument als Sammlung der darin enthaltenen Wörter und deren Häufigkeit dargstellt. Wenn die Koordinate ```(0,5) 1``` lautet, dann heißt dies, dass das Dokument an der Stelle Null ein bestimmtes Wort ein mal enthält (maybe, nicht ganz sicher).
+
+- Durch den Befehl und die Funktion ```X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)``` werden die mitgegebenen Arrays in zufällige Testteilmengen aufgeteilt. Bei dem Array y handelt es sich um das Array, welches die Sprache beinhaltet, bei dem Array X und das Array, welches durch den CountVectorizer erstellt wurde. Die test_size beschreibt den Anteil der Datensetz, welcher in die Testaufteilung aufgenommen werden soll. Dieser wurde auf 0,2 festgelegt, da dies eine ideale Aufteilung für Traing und Test sei. Der Parameter random_state führt dazu, dass das ergebnis reproduzierbar ist, indem eine festgelegte Zahl in die Funktion gegeben wird. Durch den Paramter stratify kann sicher gestellt werden, dass die Verteilung der Daten auf die Teilmengen gleichmäßig ist.
+
+#### Algorithmus trainieren und testen
+
+- Der MultinomialNB-Klassifikator eignet sich für die Klassifizierung mit ganzzahligen Merkmalszahlen, wie die aus dem CountVectorizer-Prozess erstellten Daten. Der Methode ```model.fit(X_train,y_train)``` werden die zuvor erstellen Testteilmengen X_train und y_train mitgegeben, um das Model so zu trainieren, dass es die Sprache aus den Vektoren der Texte vorhersagen kann.
+
+- Zum Testen des Models wird eine score Methode verwendet. 
+
+
+- Quelle: https://scikit-learn.org/stable/modules/model_evaluation.html
 
 ### Anwendungsfall 2: Vorhersagen von Reiseversicherungen
 

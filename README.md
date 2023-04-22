@@ -116,15 +116,31 @@
 
 ---
 
-## Schritt 3: Vorhersagen
+## Schritt 3: Visualisierung und Metriken
 
 
 ### Anwendungsfall 1: Spracherkennung
 
-- TODO
+- Score: 95,55%
 
 ### Anwendungsfall 2: Vorhersagen von Reiseversicherungen
 
-- TODO
+#### Score
+- Score Decision Tree: 79,15%
+- Score Random Forest: 81,16%
+
+#### Laufzeit
+- Laufzeit Decision Tree: 0,005ms 
+- Laufzeit Random Forest: 0,181ms (Faktor 36x langsamer)
+
+![image](https://user-images.githubusercontent.com/73344372/233780816-f0624125-c59b-4cf1-b28e-895e173601a2.png)
+
+#### Visualisierungen des Datensets
+
+![image](https://user-images.githubusercontent.com/73344372/233780964-aedab6f4-fcc9-4bfd-908a-5984b5d7a493.png)
+
+![image](https://user-images.githubusercontent.com/73344372/233780880-c67af314-3f32-45a9-8c57-8cc7bfafceb1.png)
+
+![image](https://user-images.githubusercontent.com/73344372/233780854-d48a1531-9688-46ba-8e96-cd0ee4bb97fe.png)
 
 

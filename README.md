@@ -145,6 +145,7 @@
 - Score Random Forest: 81,16%
 
 #### Laufzeit
+- Die Laufzeit wurde mithilfe von time ```import time``` gemessen: ```time.time()``` https://www.python-lernen.de/python-modul-time.htm
 - Laufzeit Decision Tree: 0,005ms 
 - Laufzeit Random Forest: 0,181ms (Faktor 36x langsamer)
 

@@ -5,6 +5,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 import time
+import matplotlib.pyplot as plt
 
 #Die Daten von der csv-Datei werden in die Variable data eingelesen
 data = pd.read_csv("https://raw.githubusercontent.com/amankharwal/Website-data/master/TravelInsurancePrediction.csv")
@@ -49,25 +50,46 @@ data["FrequentFlyer"] = data["FrequentFlyer"].map({"No": 0, "Yes": 1})
 data["EverTravelledAbroad"] = data["EverTravelledAbroad"].map({"No": 0, "Yes": 1})
 
 
-#Visualisierung anhand der Variablen Age --> Altersverteilung
+#Visualisierung anhand der Variable Age --> Altersverteilung
 figure = px.histogram(data, 
                       x = "Age", 
                       color = "TravelInsurance", 
                       title= "Altersabhängigkeit bei dem Kauf einer Reiseversicherung")
 figure.show()
 
-#Visualisierung anhand der Variablen Employment Type
+#Visualisierung anhand der Variable Employment Type
 figure = px.histogram(data, 
                       x = "Employment Type", 
                       color = "TravelInsurance", 
                       title= "Beschäftigungsverhältnis bei dem Kauf einer Reiseversicherung")
 figure.show()
 
-#Visualisierung anhand der Variablen AnnualIncome
+#Visualisierung anhand der Variable AnnualIncome
 figure = px.histogram(data, 
                       x = "AnnualIncome", 
                       color = "TravelInsurance", 
                       title= "Einkommen in Abhängigkeit zum Kauf einer Reiseversicherung")
+figure.show()
+
+#Visualisierung anhand der Variable Family
+figure = px.histogram(data, 
+                      x = "FamilyMembers", 
+                      color = "TravelInsurance", 
+                      title= "Reiseversicherung in Abhängigkeit der Anzahl an Familienmitgliedern")
+figure.show()
+
+#Visualisierung anhand der Variable Family
+figure = px.histogram(data, 
+                      x = "FrequentFlyer", 
+                      color = "TravelInsurance", 
+                      title= "Reiseversicherung in Abhängigkeit, ob man regelmäßig fliegt")
+figure.show()
+
+#Visualisierung anhand der Variable Family
+figure = px.histogram(data, 
+                      x = "EverTravelledAbroad", 
+                      color = "TravelInsurance", 
+                      title= "Reiseversicherung in Abhängigkeit, ob man schon mal im Ausland war")
 figure.show()
 
 #In die Variable x werden alle Daten des Datensets bis auf die zu vorhersagende Zielvariable y (TravelInsurance) hinzugefügt. Vorhersage von y basiert auf x.
@@ -136,6 +158,24 @@ zeitendeRandomForest = time.time()
 #Laufzeitmessung Berechnung und Ausgabe RandomForest Algorithmus
 print("=======================================================================================================")
 print('Laufzeit für den Random Forest: ' + str(zeitendeRandomForest-zeitanfangRandomForest))
+
+#Wichtigkeit der Variablen zur Vorhersage
+feature_names = ["Age", "GraduateOrNot", 
+                   "AnnualIncome", "FamilyMembers", 
+                   "ChronicDiseases", "FrequentFlyer", 
+                   "EverTravelledAbroad"]
+
+importances = model2.feature_importances_
+std = np.std([tree.feature_importances_ for tree in model2.estimators_], axis=0)
+
+forest_importances = pd.Series(importances, index=feature_names)
+
+fig, ax = plt.subplots()
+forest_importances.plot.bar(yerr=std, ax=ax)
+ax.set_title("Feature importances using MDI")
+ax.set_ylabel("")
+fig.tight_layout()
+plt.show()
 
 print("=======================================================================================================")
 print("==============================================USER INPUT===============================================")

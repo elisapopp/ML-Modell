@@ -10,7 +10,7 @@
 ```pip install pandas``` https://stackoverflow.com/questions/33481974/importerror-no-module-named-pandas
 ```pip install plotly```
 ```pip install scikit-learn``` https://stackoverflow.com/questions/46113732/modulenotfounderror-no-module-named-sklearn
-
+```pip install matplotlib``` https://stackoverflow.com/questions/18176591/importerror-no-module-named-matplotlib-pyplot
 
 ---
 
@@ -165,3 +165,4 @@
 
 ![image](https://user-images.githubusercontent.com/73344372/233798399-00ae822d-500b-46ba-844e-9857019abbf0.png)
 
+- Wichtigkeit der Variablen (https://scikit-learn.org/stable/auto_examples/ensemble/plot_forest_importances.html):

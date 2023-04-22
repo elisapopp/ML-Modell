@@ -2,6 +2,18 @@
 
 ---
 
+## Vorbereitung
+- IDE installieren: Visual Studio Code https://code.visualstudio.com/download
+- Python SDK installieren: https://apps.microsoft.com/store/detail/python-311/9NRWMJP3717K?hl=en-gb&gl=gb
+- In Visual Studio Code Python hinzufügen
+- In Konsole die einzelnen Befehle einfügen (Bibliotheken installieren):
+```pip install pandas``` https://stackoverflow.com/questions/33481974/importerror-no-module-named-pandas
+```pip install plotly```
+```pip install scikit-learn``` https://stackoverflow.com/questions/46113732/modulenotfounderror-no-module-named-sklearn
+
+
+---
+
 ## Anwendungsfälle im Allgemeinen erklärt
 
 ### Anwendungsfall 1: Spracherkennung

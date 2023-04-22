@@ -112,7 +112,10 @@
 
 ### Anwendungsfall 2: Vorhersagen von Reiseversicherungen
 
-- TODO
+- Das Datenset wird in einzelne Variablen unterteilt. Einerseits in Trainingsdaten und andererseits in Testdaten, um den Algorithmus zu testen und Metriken zu erstellen. Üblicherweise liegt das Verhältnis der Testdaten bei 20%. ```xtrain, xtest, ytrain, ytest = train_test_split(x, y, test_size=0.20, random_state=42)```
+- Mithilfe des bearbeiteten Datensets wird der Algorithmus anhand der Trainingsdaten trainiert. ```model.fit(xtrain, ytrain)```
+- Die Testdaten werden zur Bestimmung der Metrik verwendet. ```model.score(xtest, ytest)```
+- Durch Usereingaben der einzelnen Parameter kann der Algorithmus den Besitz einer Reiseversicherung vorhersagen
 
 ---
 

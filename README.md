@@ -166,3 +166,5 @@
 ![image](https://user-images.githubusercontent.com/73344372/233798399-00ae822d-500b-46ba-844e-9857019abbf0.png)
 
 - Wichtigkeit der Variablen (https://scikit-learn.org/stable/auto_examples/ensemble/plot_forest_importances.html):
+![image](https://user-images.githubusercontent.com/73344372/233798542-913e144a-e352-4e63-b6a2-9dd9d34ceb78.png)
+

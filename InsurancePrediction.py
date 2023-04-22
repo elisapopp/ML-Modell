@@ -4,12 +4,16 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
+import time
 
 #Die Daten von der csv-Datei werden in die Variable data eingelesen
 data = pd.read_csv("https://raw.githubusercontent.com/amankharwal/Website-data/master/TravelInsurancePrediction.csv")
 
 #Ausgabe der ersten sieben Columns des Datensets
 print(data.head(7))
+
+#Veränderung der Variable AnnualIncome --> Durch 10 dividieren --> zu hoch
+data["AnnualIncome"] = data["AnnualIncome"].divide(10)
 
 #Löschen der unrelevanten Daten
 data.drop(columns=["Unnamed: 0"], inplace=True)
@@ -43,19 +47,22 @@ data["EverTravelledAbroad"] = data["EverTravelledAbroad"].map({"No": 0, "Yes": 1
 data = data
 
 #Visualisierung anhand der Variablen Age --> Altersverteilung
-figure = px.histogram(data, x = "Age", 
+figure = px.histogram(data, 
+                      x = "Age", 
                       color = "TravelInsurance", 
                       title= "Altersabhängigkeit bei dem Kauf einer Reiseversicherung")
 figure.show()
 
 #Visualisierung anhand der Variablen Employment Type
-figure = px.histogram(data, x = "Employment Type", 
+figure = px.histogram(data, 
+                      x = "Employment Type", 
                       color = "TravelInsurance", 
                       title= "Beschäftigungsverhältnis bei dem Kauf einer Reiseversicherung")
 figure.show()
 
 #Visualisierung anhand der Variablen AnnualIncome
-figure = px.histogram(data, x = "AnnualIncome", 
+figure = px.histogram(data, 
+                      x = "AnnualIncome", 
                       color = "TravelInsurance", 
                       title= "Einkommen in Abhängigkeit zum Kauf einer Reiseversicherung")
 figure.show()
@@ -70,7 +77,7 @@ x = np.array(data[["Age", "GraduateOrNot",
 y = np.array(data[["TravelInsurance"]])
 
 #Aufteilung von Training- und Testdaten
-xtrain, xtest, ytrain, ytest = train_test_split(x, y, test_size=0.10, random_state=42)
+xtrain, xtest, ytrain, ytest = train_test_split(x, y, test_size=0.20, random_state=42)
 
 #Deklaration und Initialisierung von DecisionTree Algorithmus
 model = DecisionTreeClassifier()
@@ -82,6 +89,9 @@ model2 = RandomForestClassifier()
 ###########################DECISION TREE###############################
 #######################################################################
 
+#Laufzeitmessung Start DecisionTree Algorithmus
+zeitanfangDecisionTree = time.time()
+
 #Training des DecisionTree Algorithmus mit den Trainingsdaten
 model.fit(xtrain, ytrain)
 
@@ -91,9 +101,18 @@ model.fit(xtrain, ytrain)
 #Wie viel kann der trainierte Algorithmus richtig vorhersagen?
 print('Decision Tree Score: ' + str(model.score(xtest, ytest)))
 
+#Laufzeitmessung Ende DecisionTree Algorithmus
+zeitendeDecisionTree = time.time()
+
+#Laufzeitmessung Berechnung und Ausgabe DecisionTree Algorithmus
+print('Laufzeit für den Decision Tree: ' + str(zeitendeDecisionTree-zeitanfangDecisionTree))
+
 #######################################################################
 ###########################RANDOM FOREST###############################
 #######################################################################
+
+#Laufzeitmessung Anfang RandomForest Algorithmus
+zeitanfangRandomForest = time.time()
 
 #Training des RandomForest Algorithmus mit den Trainingsdaten
 model2.fit(xtrain, ytrain.ravel())
@@ -104,5 +123,25 @@ model2.fit(xtrain, ytrain.ravel())
 #Wie viel kann der trainierte Algorithmus richtig vorhersagen?
 print('Random Forest Score: ' + str(model2.score(xtest, ytest)))
 
+#Laufzeitmessung Ende RandomForest Algorithmus
+zeitendeRandomForest = time.time()
+
+#Laufzeitmessung Berechnung und Ausgabe RandomForest Algorithmus
+print('Laufzeit für den Random Forest: ' + str(zeitendeRandomForest-zeitanfangRandomForest))
+
+
 #TODO Usereingabe
-#userInputAge = input("Enter your Age: ")
+userInputAge = int(input("Enter your Age: "))
+#userInputEmploymentType = input("Enter your employment type (Private Sector/Self Employed OR Government Sector): ")
+userInputGraduateOrNot = input("Graduated? Yes or No: ")
+userInputAnnualIncome = float(input("AnnualIncome? Auf 5000 Euro genau gerundet: "))
+userInputFamilyMembers = int(input("Amount of family members:  "))
+userInputChronicDiseases = int(input("Chronic Diseases? Amount of chronic diseases: "))
+userInputFrequentFlyer = input("Frequent Flyer? Yes or No: ")
+userInputEverTravelledAbroad = input("Ever Travelled Abroad? Yes or No: ")
+
+xpredict = np.array([userInputAge, userInputGraduateOrNot, userInputAnnualIncome, userInputFamilyMembers, userInputChronicDiseases, userInputFrequentFlyer, userInputEverTravelledAbroad]).reshape(1, -1)
+
+print(xpredict)
+
+print(model2.predict(xpredict))

@@ -9,25 +9,31 @@ import time
 #Die Daten von der csv-Datei werden in die Variable data eingelesen
 data = pd.read_csv("https://raw.githubusercontent.com/amankharwal/Website-data/master/TravelInsurancePrediction.csv")
 
-#Ausgabe der ersten sieben Columns des Datensets
+#Ausgabe der ersten sieben Einträge des Datensets
+print("Ausgabe der ersten sieben Einträge des Datensets")
 print(data.head(7))
 
-#Veränderung der Variable AnnualIncome --> Durch 10 dividieren --> zu hoch
+#Veränderung der Variable AnnualIncome --> Durch 10 dividieren --> zu hoch, Daten höchstwahrscheinlich falsch
 data["AnnualIncome"] = data["AnnualIncome"].divide(10)
 
-#Löschen der unrelevanten Daten
+#Löschen der unrelevanten Daten (erster Eintrag)
 data.drop(columns=["Unnamed: 0"], inplace=True)
 
 #Ausgabe aller summierten Nullwerte --> Ziel: Alles 0 --> Keine Nullwerte vorhanden im Datenset
+print("=======================================================================================================")
+print("Ausgabe aller summierten Nullwerte --> Ziel: Alles 0 --> Keine Nullwerte vorhanden im Datenset")
 print(data.isnull().sum())
 
 #Minimales Alter in dem Datenset
+print("=======================================================================================================")
 print('Maximales Alter in dem Datenset: ' + str(data["Age"].min()))
 
 #Maximales Alter in dem Datenset
+print("=======================================================================================================")
 print('Maximales Alter in dem Datenset: ' + str(data["Age"].max()))
 
 #Ausgabe von Grundinformationen des Datensets
+print("=======================================================================================================")
 data.info()
 
 #Veränderung der Variable TravelInsurance --> 0 wird zu Besitzt keine Reiseversicherung, 1 wird zu Besitzt eine Reiseversicherung
@@ -42,9 +48,6 @@ data["FrequentFlyer"] = data["FrequentFlyer"].map({"No": 0, "Yes": 1})
 #Veränderung der Variable EverTravelledAbroad --> 0 wird zu No, 1 wird zu Yes
 data["EverTravelledAbroad"] = data["EverTravelledAbroad"].map({"No": 0, "Yes": 1})
 
-
-#????????????Veränderte Daten werden abgespeichert (könnte sonst zu Fehlern führen)???????????
-data = data
 
 #Visualisierung anhand der Variablen Age --> Altersverteilung
 figure = px.histogram(data, 
@@ -79,15 +82,12 @@ y = np.array(data[["TravelInsurance"]])
 #Aufteilung von Training- und Testdaten
 xtrain, xtest, ytrain, ytest = train_test_split(x, y, test_size=0.20, random_state=42)
 
-#Deklaration und Initialisierung von DecisionTree Algorithmus
-model = DecisionTreeClassifier()
-
-#Deklaration und Initialisierung von RandomForest Algorithmus
-model2 = RandomForestClassifier()
-
 #######################################################################
 ###########################DECISION TREE###############################
 #######################################################################
+
+#Deklaration und Initialisierung von DecisionTree Algorithmus
+model = DecisionTreeClassifier()
 
 #Laufzeitmessung Start DecisionTree Algorithmus
 zeitanfangDecisionTree = time.time()
@@ -99,17 +99,22 @@ model.fit(xtrain, ytrain)
 #predictions = model.predict(xtest)
 
 #Wie viel kann der trainierte Algorithmus richtig vorhersagen?
+print("=======================================================================================================")
 print('Decision Tree Score: ' + str(model.score(xtest, ytest)))
 
 #Laufzeitmessung Ende DecisionTree Algorithmus
 zeitendeDecisionTree = time.time()
 
 #Laufzeitmessung Berechnung und Ausgabe DecisionTree Algorithmus
+print("=======================================================================================================")
 print('Laufzeit für den Decision Tree: ' + str(zeitendeDecisionTree-zeitanfangDecisionTree))
 
 #######################################################################
 ###########################RANDOM FOREST###############################
 #######################################################################
+
+#Deklaration und Initialisierung von RandomForest Algorithmus
+model2 = RandomForestClassifier()
 
 #Laufzeitmessung Anfang RandomForest Algorithmus
 zeitanfangRandomForest = time.time()
@@ -118,30 +123,53 @@ zeitanfangRandomForest = time.time()
 model2.fit(xtrain, ytrain.ravel())
 
 #Anhand der Testdaten können mithilfe des trainierten Algorithmus nun auch Vorhersagen getroffen werden
+#Zum Beispiel:
 #predictions2 = model2.predict(xtest)
 
 #Wie viel kann der trainierte Algorithmus richtig vorhersagen?
+print("=======================================================================================================")
 print('Random Forest Score: ' + str(model2.score(xtest, ytest)))
 
 #Laufzeitmessung Ende RandomForest Algorithmus
 zeitendeRandomForest = time.time()
 
 #Laufzeitmessung Berechnung und Ausgabe RandomForest Algorithmus
+print("=======================================================================================================")
 print('Laufzeit für den Random Forest: ' + str(zeitendeRandomForest-zeitanfangRandomForest))
 
+print("=======================================================================================================")
+print("==============================================USER INPUT===============================================")
+print("=======================================================================================================")
 
-#TODO Usereingabe
+
+#Usereingabe
 userInputAge = int(input("Enter your Age: "))
-#userInputEmploymentType = input("Enter your employment type (Private Sector/Self Employed OR Government Sector): ")
+
 userInputGraduateOrNot = input("Graduated? Yes or No: ")
+if userInputGraduateOrNot=="Yes" or userInputGraduateOrNot=="yes":
+    userInputGraduateOrNot = 1
+else:
+    userInputGraduateOrNot = 0
+
 userInputAnnualIncome = float(input("AnnualIncome? Auf 5000 Euro genau gerundet: "))
+
 userInputFamilyMembers = int(input("Amount of family members:  "))
+
 userInputChronicDiseases = int(input("Chronic Diseases? Amount of chronic diseases: "))
+
 userInputFrequentFlyer = input("Frequent Flyer? Yes or No: ")
+if userInputFrequentFlyer=="Yes" or userInputFrequentFlyer=="yes":
+    userInputFrequentFlyer = 1
+else:
+    userInputFrequentFlyer = 0
+
 userInputEverTravelledAbroad = input("Ever Travelled Abroad? Yes or No: ")
+if userInputEverTravelledAbroad=="Yes" or userInputEverTravelledAbroad=="yes":
+    userInputEverTravelledAbroad = 1
+else:
+    userInputEverTravelledAbroad = 0
 
 xpredict = np.array([userInputAge, userInputGraduateOrNot, userInputAnnualIncome, userInputFamilyMembers, userInputChronicDiseases, userInputFrequentFlyer, userInputEverTravelledAbroad]).reshape(1, -1)
 
-print(xpredict)
-
-print(model2.predict(xpredict))
+print("Einschätzung des Decision Trees: " + model.predict(xpredict))
+print("Einschätzung des Random Forest: " + model2.predict(xpredict))

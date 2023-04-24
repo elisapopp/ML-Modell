@@ -27,7 +27,7 @@ print(data.isnull().sum())
 
 #Minimales Alter in dem Datenset
 print("=======================================================================================================")
-print('Maximales Alter in dem Datenset: ' + str(data["Age"].min()))
+print('Minimales Alter in dem Datenset: ' + str(data["Age"].min()))
 
 #Maximales Alter in dem Datenset
 print("=======================================================================================================")

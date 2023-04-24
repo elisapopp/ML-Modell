@@ -62,7 +62,7 @@
 
 #### Datenveränderung
 
-- Hier noch erläutern, wenn die daten modifiziert werden.
+- Die Daten werden nicht verändert, da das Dataset schon sehr gut aufgestellt ist wie in der Datenanalyse herausgekommen. Es wurden keinen fehlenden Werte im Dataset gefunden und auch die Aufteilung der Datensätze fpr jede Klasse ist gleich verteilt.
 
 ### Anwendungsfall 2: Vorhersagen von Reiseversicherungen
 
@@ -118,7 +118,6 @@
 - Der MultinomialNB-Klassifikator eignet sich für die Klassifizierung mit ganzzahligen Merkmalszahlen, wie die aus dem CountVectorizer-Prozess erstellten Daten. Der Methode ```model.fit(X_train,y_train)``` werden die zuvor erstellen Testteilmengen X_train und y_train mitgegeben, um das Model so zu trainieren, dass es die Sprache aus den Vektoren der Texte vorhersagen kann.
 
 - Zum Testen des Models wird eine score Methode verwendet. 
-
 
 - Quelle: https://scikit-learn.org/stable/modules/model_evaluation.html
 

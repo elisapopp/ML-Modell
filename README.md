@@ -62,7 +62,7 @@
 
 #### Datenveränderung
 
-- Die Daten werden nicht verändert, da das Dataset schon sehr gut aufgestellt ist wie in der Datenanalyse herausgekommen. Es wurden keinen fehlenden Werte im Dataset gefunden und auch die Aufteilung der Datensätze fpr jede Klasse ist gleich verteilt.
+- Die Daten werden nicht verändert, da das Dataset schon sehr gut aufgestellt ist, wie in der Datenanalyse herausgekommen. Es wurden keinen fehlenden Werte im Dataset gefunden und auch die Aufteilung der Datensätze für jede Klasse ist gleich verteilt.
 
 ### Anwendungsfall 2: Vorhersagen von Reiseversicherungen
 
